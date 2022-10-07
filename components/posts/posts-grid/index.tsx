@@ -3,7 +3,7 @@ import PostItem, { PostType } from '../post-item'
 
 import styles from './styles.module.css'
 
-interface PostsGridProps {
+export interface PostsGridProps {
     posts: PostType[]
 }
 
