@@ -8,7 +8,7 @@ export interface PostType {
     title: string
     image: string
     excerpt: string
-    date: Date
+    date: string
     slug: string
 }
 
@@ -26,10 +26,11 @@ const PostItem: FC<PostItemProps> = ({ post }) => {
     })
 
     const imagePath = `/images/posts/${slug}/${image}`
+    const linkPath = `/posts/${slug}`
 
     return (
         <li className={styles.post}>
-            <Link href={''}>
+            <Link href={linkPath}>
                 <a>
                     <div className={styles.image}>
                         <Image
@@ -37,6 +38,7 @@ const PostItem: FC<PostItemProps> = ({ post }) => {
                             alt={title}
                             width={300}
                             height={200}
+                            layout='responsive'
                         />
                     </div>
                     <div className={styles.content}>
