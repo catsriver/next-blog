@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 import PostHeader from '../post-header/index'
 import styles from './styles.module.css'
@@ -17,7 +18,7 @@ const PostContent: FC = () => {
     return (
         <article className={styles.content}>
             <PostHeader image={imagePath} title={DUMMY_POST.title} />
-            {DUMMY_POST.content}
+            <ReactMarkdown>{DUMMY_POST.content}</ReactMarkdown>
         </article>
     )
 }
