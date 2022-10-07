@@ -5,6 +5,7 @@ import Link from 'next/link'
 import styles from './styles.module.css'
 
 export interface PostType {
+    content: string
     title: string
     image: string
     excerpt: string
