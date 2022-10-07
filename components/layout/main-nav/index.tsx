@@ -2,10 +2,11 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 import Logo from '../logo'
+import styles from './styles.module.css'
 
 const MainNav: FC = () => {
     return (
-        <header>
+        <header className={styles.header}>
             <Link href='/'>
                 <a>
                     <Logo />
