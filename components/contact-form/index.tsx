@@ -1,4 +1,4 @@
-import { ErrorInfo, FC, MouseEvent, useState } from 'react'
+import { ErrorInfo, FC, MouseEvent, useEffect, useState } from 'react'
 import Notification from '../ui/notification/notification'
 
 import styles from './styles.module.css'
@@ -22,8 +22,19 @@ const ContactForm: FC = () => {
     const [enteredEmail, setEnteredEmail] = useState('')
     const [enteredName, setEnteredName] = useState('')
     const [enteredMessage, setEnteredMessage] = useState('')
-    const [requestStatus, setRequestStatus] = useState('') // 'pending' ||'success' || 'error'
-    const [requestError, setRequestError] = useState('')
+    const [requestStatus, setRequestStatus] = useState<string | null>(null) // 'pending' ||'success' || 'error'
+    const [requestError, setRequestError] = useState<string | null>(null)
+
+    useEffect(() => {
+        if (requestStatus === 'success' || requestStatus === 'error') {
+            const timer = setTimeout(() => {
+                setRequestStatus(null)
+                setRequestError(null)
+            }, 3000)
+
+            return () => clearTimeout(timer)
+        }
+    }, [requestStatus])
 
     const sendMessageHandler = async (event: MouseEvent<HTMLFormElement>) => {
         event.preventDefault()
