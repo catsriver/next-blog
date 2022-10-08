@@ -1,12 +1,22 @@
-import { NextApiHandler } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next'
 
-const hander: NextApiHandler = (req, res) => {
+export interface BodyEnterty {
+    email: string
+    name: string
+    message: string
+}
+
+interface ReqApiProps extends NextApiRequest {
+    body: BodyEnterty
+}
+
+const hander = (req: ReqApiProps, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        const { email, name, message } = req.body
+        const { email, message, name } = req.body
 
         if (
             !email ||
-            email.includes('@') ||
+            !email.includes('@') ||
             !name ||
             name.trim() === '' ||
             !message ||
