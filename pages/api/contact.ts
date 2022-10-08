@@ -32,16 +32,18 @@ const hander = async (req: ReqApiProps, res: NextApiResponse) => {
 
         let client
 
+        const connectionStr = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.o61fatb.mongodb.net/?retryWrites=true&w=majority`
+
+        console.log(connectionStr)
+
         try {
-            client = await MongoClient.connect(
-                'mongodb+srv://catsriver:zhenxi@cluster0.o61fatb.mongodb.net/?retryWrites=true&w=majority'
-            )
+            client = await MongoClient.connect(connectionStr)
         } catch (err) {
             res.status(500).json({ message: 'Could not connect to database.' })
             return
         }
 
-        const db = client.db('my-site')
+        const db = client.db(process.env.mongodb_database)
 
         try {
             const result = await db.collection('messages').insertOne(newMessage)
