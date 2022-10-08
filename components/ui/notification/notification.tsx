@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import ReactDOM from 'react-dom'
 
 import styles from './styles.module.css'
 
@@ -20,11 +21,12 @@ const Notification: FC<NotificationProps> = ({ title, message, status }) => {
     }
 
     const cssClasses = `${styles.notification} ${statusClasses}`
-    return (
+    return ReactDOM.createPortal(
         <div className={cssClasses}>
             <h2>{title}</h2>
             <p>{message}</p>
-        </div>
+        </div>,
+        document.getElementById('notifications')
     )
 }
 
