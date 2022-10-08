@@ -48,6 +48,9 @@ const ContactForm: FC = () => {
                 message: enteredMessage
             })
             setRequestStatus('success')
+            setEnteredEmail('')
+            setEnteredName('')
+            setEnteredMessage('')
         } catch (err) {
             setRequestError((err as Error).message)
             setRequestStatus('error')
