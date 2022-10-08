@@ -1,6 +1,9 @@
 import { FC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import Image from 'next/image'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { CodeProps } from 'react-markdown/lib/ast-to-react'
 
 import PostHeader from '../post-header/index'
 import styles from './styles.module.css'
@@ -30,6 +33,18 @@ const PostContent: FC<{ post: PostType }> = ({ post }) => {
                 )
             }
             return <p>{p.children}</p>
+        },
+
+        code(code: CodeProps) {
+            const { children, className } = code
+
+            const lang = className?.replace('language-', '')
+
+            return (
+                <SyntaxHighlighter language={lang} style={atomDark}>
+                    {children as []}
+                </SyntaxHighlighter>
+            )
         }
     }
 
