@@ -11,15 +11,25 @@ const PostContent: FC<{ post: PostType }> = ({ post }) => {
 
     const customComponents = {
         // 替换img标签为Image
-        img(img: any) {
-            return (
-                <Image
-                    src={`/images/posts/${post.slug}/${img.src}`}
-                    alt={img.alt}
-                    width={600}
-                    height={300}
-                />
-            )
+        p(p: any) {
+            const { node } = p
+
+            if (node.children[0].tagName === 'img') {
+                const image = node.children[0]
+                const { src, alt } = image.properties
+
+                return (
+                    <div className={styles.image}>
+                        <Image
+                            src={`/images/posts/${post.slug}/${src}`}
+                            alt={alt}
+                            width={600}
+                            height={300}
+                        />
+                    </div>
+                )
+            }
+            return <p>{p.children}</p>
         }
     }
 
