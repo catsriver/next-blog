@@ -1,9 +1,10 @@
-import Document, { Html, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
     render(): JSX.Element {
         return (
             <Html lang='zh'>
+                <Head />
                 <body>
                     <Main />
                     <NextScript />
