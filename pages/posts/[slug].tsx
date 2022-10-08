@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next/types'
 
 import PostContent from '../../components/posts/post-detail/post-content'
@@ -5,7 +6,15 @@ import { getPostData, getPostsFiles } from '../../helper/posts-util'
 import { PostType } from '../../components/posts/post-item'
 
 const PostDetailPage: NextPage<{ post: PostType }> = ({ post }) => {
-    return <PostContent post={post} />
+    return (
+        <>
+            <Head>
+                <title>{post.title}</title>
+                <meta name='description' content={post.excerpt} />
+            </Head>
+            <PostContent post={post} />
+        </>
+    )
 }
 
 export default PostDetailPage

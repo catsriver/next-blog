@@ -136,7 +136,7 @@ const ContactForm: FC = () => {
             {notification && (
                 <Notification
                     title={notification.title}
-                    message={notification.message}
+                    message={notification.message!}
                     status={notification.status}
                 />
             )}
